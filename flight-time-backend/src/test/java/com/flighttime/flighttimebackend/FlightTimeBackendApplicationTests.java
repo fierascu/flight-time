@@ -8,6 +8,7 @@ class FlightTimeBackendApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
