@@ -23,8 +23,8 @@ public class FlightControllerTest {
   @Test
   public void jsonCanLoaded() {
     FlightController testerFlightController = new FlightController();
-    assertFalse(testerFlightController.jsonProcessing().isEmpty());
-    assertEquals(3885, testerFlightController.jsonProcessing().size());
+    assertFalse(Utils.jsonProcessing().isEmpty());
+    assertEquals(3885, Utils.jsonProcessing().size());
 
     logger.info("jsonCanLoaded: ok");
   }
@@ -32,7 +32,7 @@ public class FlightControllerTest {
   @Test
   public void jsonFindAirport() {
     FlightController testerFlightController = new FlightController();
-    List<AirportV2> airports = testerFlightController.jsonProcessing();
+    List<AirportV2> airports = Utils.jsonProcessing();
     AirportV2 airport = testerFlightController.findAirportByCode(airports, "VIE");
     assertEquals("VIE", airport.getCode());
     assertEquals("Vienna Schwechat International Airport", airport.getName());
@@ -42,7 +42,7 @@ public class FlightControllerTest {
   @Test
   public void jsonFindAirportNegative() {
     FlightController testerFlightController = new FlightController();
-    List<AirportV2> airports = testerFlightController.jsonProcessing();
+    List<AirportV2> airports = Utils.jsonProcessing();
     AirportV2 airport = testerFlightController.findAirportByCode(airports, "NOT_EXISTING");
 
     logger.info("jsonFindAirportNegative: not found" + airport);
