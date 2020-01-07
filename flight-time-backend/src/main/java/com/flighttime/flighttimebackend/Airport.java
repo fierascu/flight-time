@@ -4,133 +4,146 @@ import java.util.Objects;
 
 public class Airport {
 
+  private String id;
 
-    private String id;
-    private String icao;
-    private String iata;
-    private String name;
-    private String city;
-    private String state;
-    private String country;
-    private String elevation;
-    private long lat;
-    private long lon;
-    private String tz;
+  private String icao;
 
+  private String iata;
 
-    public String getId() {
-        return id;
-    }
+  private String name;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+  private String city;
 
-    public String getIcao() {
-        return icao;
-    }
+  private String state;
 
-    public void setIcao(String icao) {
-        this.icao = icao;
-    }
+  private String country;
 
-    public String getIata() {
-        return iata;
-    }
+  private String elevation;
 
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
+  private long lat;
 
-    public String getName() {
-        return name;
-    }
+  private long lon;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  private String tz;
 
-    public String getCity() {
-        return city;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
+  public void setId(String id) {
+    this.id = id;
+  }
 
-    public String getState() {
-        return state;
-    }
+  public String getIcao() {
+    return icao;
+  }
 
-    public void setState(String state) {
-        this.state = state;
-    }
+  public void setIcao(String icao) {
+    this.icao = icao;
+  }
 
-    public String getCountry() {
-        return country;
-    }
+  public String getIata() {
+    return iata;
+  }
 
-    public void setCountry(String country) {
-        this.country = country;
-    }
+  public void setIata(String iata) {
+    this.iata = iata;
+  }
 
-    public String getElevation() {
-        return elevation;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setElevation(String elevation) {
-        this.elevation = elevation;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public long getLat() {
-        return lat;
-    }
+  public String getCity() {
+    return city;
+  }
 
-    public void setLat(long lat) {
-        this.lat = lat;
-    }
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-    public long getLon() {
-        return lon;
-    }
+  public String getState() {
+    return state;
+  }
 
-    public void setLon(long lon) {
-        this.lon = lon;
-    }
+  public void setState(String state) {
+    this.state = state;
+  }
 
-    public String getTz() {
-        return tz;
-    }
+  public String getCountry() {
+    return country;
+  }
 
-    public void setTz(String tz) {
-        this.tz = tz;
-    }
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-    public Airport(String id, String icao, String iata, String name, String city, String state, String country, String elevation, long lat, long lon, String tz) {
-        this.id = id;
-        this.icao = icao;
-        this.iata = iata;
-        this.name = name;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-        this.elevation = elevation;
-        this.lat = lat;
-        this.lon = lon;
-        this.tz = tz;
-    }
+  public String getElevation() {
+    return elevation;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Airport)) return false;
-        Airport airport = (Airport) o;
-        return getId().equals(airport.getId());
-    }
+  public void setElevation(String elevation) {
+    this.elevation = elevation;
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
+  public long getLat() {
+    return lat;
+  }
+
+  public void setLat(long lat) {
+    this.lat = lat;
+  }
+
+  public long getLon() {
+    return lon;
+  }
+
+  public void setLon(long lon) {
+    this.lon = lon;
+  }
+
+  public String getTz() {
+    return tz;
+  }
+
+  public void setTz(String tz) {
+    this.tz = tz;
+  }
+
+  public Airport(String id, String icao, String iata, String name, String city, String state, String country,
+                 String elevation, long lat, long lon, String tz) {
+    this.id = id;
+    this.icao = icao;
+    this.iata = iata;
+    this.name = name;
+    this.city = city;
+    this.state = state;
+    this.country = country;
+    this.elevation = elevation;
+    this.lat = lat;
+    this.lon = lon;
+    this.tz = tz;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+      if (this == o) {
+          return true;
+      }
+      if (!(o instanceof Airport)) {
+          return false;
+      }
+    Airport airport = (Airport)o;
+    return getId().equals(airport.getId());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getId());
+  }
 
 }

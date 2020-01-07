@@ -204,4 +204,28 @@ public class AirportV2 {
   public int hashCode() {
     return Objects.hash(getCode(), getName());
   }
+
+  @Override
+  public String toString() {
+    return "AirportV2{" +
+        "code='" + code + '\'' +
+        ", lat='" + lat + '\'' +
+        ", lon='" + lon + '\'' +
+        ", name='" + name + '\'' +
+        ", city='" + city + '\'' +
+        ", state='" + state + '\'' +
+        ", country='" + country + '\'' +
+        ", woeid='" + woeid + '\'' +
+        ", tz='" + tz + '\'' +
+        ", phone='" + phone + '\'' +
+        ", type='" + type + '\'' +
+        ", email='" + email + '\'' +
+        ", url='" + url + '\'' +
+        ", runway_length='" + runway_length + '\'' +
+        ", elev='" + elev + '\'' +
+        ", icao='" + icao + '\'' +
+        ", direct_flights='" + direct_flights + '\'' +
+        ", carriers='" + carriers + '\'' +
+        '}';
+  }
 }
