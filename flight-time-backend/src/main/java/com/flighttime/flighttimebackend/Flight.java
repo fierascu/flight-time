@@ -1,5 +1,9 @@
 package com.flighttime.flighttimebackend;
 
+import com.javadocmd.simplelatlng.LatLng;
+import com.javadocmd.simplelatlng.LatLngTool;
+import com.javadocmd.simplelatlng.util.LengthUnit;
+
 public class Flight {
 
   private double depLat;
@@ -27,13 +31,18 @@ public class Flight {
   public Flight(AirportV2 depAirport, AirportV2 arrAeroport) {
     this.depAeroport = depAirport.getCode();
     this.arrAeroport = arrAeroport.getCode();
+    this.depLat = Double.parseDouble(depAirport.getLat());
+    this.depLon = Double.parseDouble(depAirport.getLon());
+    this.arrLat = Double.parseDouble(arrAeroport.getLat());
+    this.arrLon = Double.parseDouble(arrAeroport.getLon());
 
-    convertAndSet(depAirport.getLat(), depAirport.getLon(), arrAeroport.getLat(), arrAeroport.getLon(),
-        depAirport.getElev(), arrAeroport.getElev());
 
-    this.dist = Utils.calculateDistanceFromPoints(depLat, arrLat, depLon, arrLon, depElev, arrElev);
+    LatLng depLng = new LatLng(depLat, depLon);
+    LatLng arrLng = new LatLng(arrLat, arrLon);
 
-    this.duration = Utils.calculateDurationFromMeters(dist);
+    this.dist = LatLngTool.distance(depLng, arrLng, LengthUnit.NAUTICAL_MILE);
+
+    this.duration = Utils.calculateDurationFromMiles(dist);
 
     this.durationAsTime = Utils.getDurationAsTime(duration);
   }
@@ -84,17 +93,6 @@ public class Flight {
 
   public void setDurationAsTime(String durationAsTime) {
     this.durationAsTime = durationAsTime;
-  }
-
-  private void convertAndSet(String depLatString, String depLonString, String arrLatString, String arrLotString,
-                             String depElevString, String arrElevString) {
-    this.depLat = Double.parseDouble(depLatString);
-    this.depLon = Double.parseDouble(depLonString);
-    this.arrLat = Double.parseDouble(arrLotString);
-    this.arrLon = Double.parseDouble(arrLatString);
-    this.depElev = Double.parseDouble(depElevString);
-    this.arrElev = Double.parseDouble(arrElevString);
-
   }
 
 }
