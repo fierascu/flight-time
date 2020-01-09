@@ -8,13 +8,14 @@ import java.net.URL;
 public class Client {
 
   public static void main(String[] args) throws Exception {
-    String response = getResponse("VIE", "BUD");
-
+    String response = getResponse("VIE", "BUD", "flight");
     System.out.println(response);
 
+    String response2 = getResponse("VIE", "BUD", "duration");
+    System.out.println(response2);
   }
 
-  private static String getResponse(String depAirportCode, String arrAirportCode) {
+  private static String getResponse(String depAirportCode, String arrAirportCode, String endpoint) {
     try {
 
       // TODO read from application.yml
@@ -23,7 +24,7 @@ public class Client {
       String host = "localhost";
       int port = 8082;
 
-      String url = protocol + "://" + host + ":" + port + "/flight?dep=" + depAirportCode + "&arr=" + arrAirportCode;
+      String url = protocol + "://" + host + ":" + port + "/" + endpoint + "?dep=" + depAirportCode + "&arr=" + arrAirportCode;
 
       HttpURLConnection httpClient = (HttpURLConnection)new URL(url).openConnection();
 

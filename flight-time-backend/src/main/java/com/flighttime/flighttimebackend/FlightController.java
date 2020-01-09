@@ -24,6 +24,21 @@ public class FlightController {
     return new Flight(depAirport, arrAirport);
   }
 
+  @RequestMapping("/duration")
+  public double dist(@RequestParam(value = "dep", defaultValue = "") String dep,
+                       @RequestParam(value = "arr", defaultValue = "") String arr) {
+    if (airports.isEmpty()) {
+      airports = Utils.jsonProcessing();
+    }
+
+    AirportV2 depAirport = findAirportByCode(airports, dep);
+    AirportV2 arrAirport = findAirportByCode(airports, arr);
+
+    final Flight flight = new Flight(depAirport, arrAirport);
+    return flight.getDuration();
+  }
+
+
   public AirportV2 findAirportByCode(List<AirportV2> airports, String code) {
     return airports.stream().filter(a -> a.getCode().equalsIgnoreCase(code)).findFirst().orElse(new AirportV2());
   }
