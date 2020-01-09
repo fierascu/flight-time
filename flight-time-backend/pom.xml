@@ -103,6 +103,24 @@
 			<artifactId>simplelatlng</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+		<!-- used for client reading the json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+			<version>0.0.20131108.vaadin1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.vaadin.external.google</groupId>
+			<artifactId>android-json</artifactId>
+			<version>0.0.20131108.vaadin1</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
