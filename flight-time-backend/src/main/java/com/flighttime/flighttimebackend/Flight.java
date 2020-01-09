@@ -1,5 +1,7 @@
 package com.flighttime.flighttimebackend;
 
+import static com.flighttime.flighttimebackend.Utils.formatDouble;
+
 import com.javadocmd.simplelatlng.LatLng;
 import com.javadocmd.simplelatlng.LatLngTool;
 import com.javadocmd.simplelatlng.util.LengthUnit;
@@ -36,13 +38,12 @@ public class Flight {
     this.arrLat = Double.parseDouble(arrAeroport.getLat());
     this.arrLon = Double.parseDouble(arrAeroport.getLon());
 
-
     LatLng depLng = new LatLng(depLat, depLon);
     LatLng arrLng = new LatLng(arrLat, arrLon);
 
-    this.dist = LatLngTool.distance(depLng, arrLng, LengthUnit.NAUTICAL_MILE);
+    this.dist = formatDouble(LatLngTool.distance(depLng, arrLng, LengthUnit.NAUTICAL_MILE));
 
-    this.duration = Utils.calculateDurationFromMiles(dist);
+    this.duration = formatDouble(Utils.calculateDurationFromMiles(dist));
 
     this.durationAsTime = Utils.getDurationAsTime(duration);
   }

@@ -114,4 +114,13 @@ public class Utils {
         long mins = duration.minusHours(hours).toMinutes();
         return String.format("%dhrs %02dmins", hours, mins);
     }
+
+    /**
+     * truncate a double to only two decimals
+     * @param value
+     * @return
+     */
+    public static double formatDouble(double value) {
+        return Math.floor(value * 100) / 100;
+    }
 }
