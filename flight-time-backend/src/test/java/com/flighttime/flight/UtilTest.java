@@ -1,4 +1,4 @@
-package com.flighttime.flighttimebackend;
+package com.flighttime.flight;
 
 import org.junit.jupiter.api.Test;
 

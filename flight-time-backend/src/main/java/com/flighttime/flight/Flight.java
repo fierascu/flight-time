@@ -1,6 +1,6 @@
-package com.flighttime.flighttimebackend;
+package com.flighttime.flight;
 
-import static com.flighttime.flighttimebackend.Utils.formatDouble;
+import static com.flighttime.flight.Utils.formatDouble;
 
 import com.javadocmd.simplelatlng.LatLng;
 import com.javadocmd.simplelatlng.LatLngTool;
