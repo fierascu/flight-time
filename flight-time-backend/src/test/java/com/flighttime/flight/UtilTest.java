@@ -1,5 +1,6 @@
 package com.flighttime.flight;
 
+import com.flighttime.app.Utils;
 import org.junit.jupiter.api.Test;
 
 public class UtilTest {

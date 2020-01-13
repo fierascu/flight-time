@@ -1,7 +1,8 @@
 package com.flighttime.flight;
 
-import static com.flighttime.flight.Utils.formatDouble;
+import static com.flighttime.app.Utils.formatDouble;
 
+import com.flighttime.app.Utils;
 import com.javadocmd.simplelatlng.LatLng;
 import com.javadocmd.simplelatlng.LatLngTool;
 import com.javadocmd.simplelatlng.util.LengthUnit;
