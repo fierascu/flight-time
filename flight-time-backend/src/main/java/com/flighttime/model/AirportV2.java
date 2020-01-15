@@ -1,4 +1,4 @@
-package com.flighttime.flight;
+package com.flighttime.model;
 
 import java.util.Objects;
 

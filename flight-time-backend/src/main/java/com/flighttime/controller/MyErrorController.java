@@ -1,4 +1,4 @@
-package com.flighttime.control;
+package com.flighttime.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
