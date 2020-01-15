@@ -34,4 +34,16 @@ public class AirportRepositoy {
       }
       return airports;
   }
+
+  public static AirportV2 findAirportByCode(List<AirportV2> airports, String code) {
+      return airports.stream().filter(a -> a.getCode().equalsIgnoreCase(code)).findFirst().orElse(new AirportV2());
+  }
+
+  public static AirportV2 findAirportByIcao(List<AirportV2> airports, String icao) {
+      return airports.stream().filter(a -> a.getIcao().equalsIgnoreCase(icao)).findFirst().orElse(new AirportV2());
+  }
+
+  public static AirportV2 findAirportContainingName(List<AirportV2> airports, String name) {
+      return airports.stream().filter(a -> a.getName().toLowerCase().contains(name.toLowerCase())).findFirst().orElse(new AirportV2());
+  }
 }

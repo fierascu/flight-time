@@ -26,8 +26,8 @@ public class FlightController {
     public Flight flight(@RequestParam(value = "dep", defaultValue = "") String dep,
                          @RequestParam(value = "arr", defaultValue = "") String arr) {
 
-        AirportV2 depAirport = findAirportByCode(getAirports(), dep);
-        AirportV2 arrAirport = findAirportByCode(getAirports(), arr);
+        AirportV2 depAirport = AirportRepositoy.findAirportByCode(getAirports(), dep);
+        AirportV2 arrAirport = AirportRepositoy.findAirportByCode(getAirports(), arr);
 
         return new Flight(depAirport, arrAirport);
     }
@@ -35,8 +35,8 @@ public class FlightController {
     @RequestMapping("/duration")
     public double dist(@RequestParam(value = "dep", defaultValue = "") String dep,
                        @RequestParam(value = "arr", defaultValue = "") String arr) {
-        AirportV2 depAirport = findAirportByCode(getAirports(), dep);
-        AirportV2 arrAirport = findAirportByCode(getAirports(), arr);
+        AirportV2 depAirport = AirportRepositoy.findAirportByCode(getAirports(), dep);
+        AirportV2 arrAirport = AirportRepositoy.findAirportByCode(getAirports(), arr);
 
         final Flight flight = new Flight(depAirport, arrAirport);
         return flight.getDuration();
@@ -50,28 +50,16 @@ public class FlightController {
         List<AirportV2> aps = new ArrayList<>();
 
         if (!code.isEmpty()) {
-            aps.add(findAirportByCode(getAirports(), code));
+            aps.add(AirportRepositoy.findAirportByCode(getAirports(), code));
         }
         if (!icao.isEmpty()) {
-            aps.add(findAirportByIcao(getAirports(), icao));
+            aps.add(AirportRepositoy.findAirportByIcao(getAirports(), icao));
         }
         if (!name.isEmpty()) {
-            aps.add(findAirportContainingName(getAirports(), name));
+            aps.add(AirportRepositoy.findAirportContainingName(getAirports(), name));
         }
 
         return aps;
-    }
-
-    public AirportV2 findAirportByCode(List<AirportV2> airports, String code) {
-        return airports.stream().filter(a -> a.getCode().equalsIgnoreCase(code)).findFirst().orElse(new AirportV2());
-    }
-
-    public AirportV2 findAirportByIcao(List<AirportV2> airports, String icao) {
-        return airports.stream().filter(a -> a.getIcao().equalsIgnoreCase(icao)).findFirst().orElse(new AirportV2());
-    }
-
-    public AirportV2 findAirportContainingName(List<AirportV2> airports, String name) {
-        return airports.stream().filter(a -> a.getName().toLowerCase().contains(name.toLowerCase())).findFirst().orElse(new AirportV2());
     }
 
 }

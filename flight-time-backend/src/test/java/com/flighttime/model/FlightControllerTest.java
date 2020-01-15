@@ -36,7 +36,7 @@ public class FlightControllerTest {
   public void jsonFindAirport() {
     FlightController testerFlightController = new FlightController();
     List<AirportV2> airports = AirportRepositoy.jsonProcessing();
-    AirportV2 airport = testerFlightController.findAirportByCode(airports, "VIE");
+    AirportV2 airport = AirportRepositoy.findAirportByCode(airports, "VIE");
     assertEquals("VIE", airport.getCode());
     assertEquals("Vienna Schwechat International Airport", airport.getName());
     logger.info("jsonFindAirport: airport: " + airport);
@@ -46,7 +46,7 @@ public class FlightControllerTest {
   public void jsonFindAirportNegative() {
     FlightController testerFlightController = new FlightController();
     List<AirportV2> airports = AirportRepositoy.jsonProcessing();
-    AirportV2 airport = testerFlightController.findAirportByCode(airports, "NOT_EXISTING");
+    AirportV2 airport = AirportRepositoy.findAirportByCode(airports, "NOT_EXISTING");
 
     logger.info("jsonFindAirportNegative: not found" + airport);
   }
