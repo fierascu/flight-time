@@ -17,10 +17,6 @@ public class Flight {
 
   private double arrLon;
 
-  private double depElev;
-
-  private double arrElev;
-
   private String depAeroport;
 
   private String arrAeroport;

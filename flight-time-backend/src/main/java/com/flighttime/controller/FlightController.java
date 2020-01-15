@@ -3,13 +3,13 @@ package com.flighttime.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.flighttime.model.AirportV2;
 import com.flighttime.model.Flight;
 import com.flighttime.repository.AirportRepositoy;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FlightController {
@@ -22,17 +22,16 @@ public class FlightController {
         return airports;
     }
 
-    @RequestMapping("/flight")
+    @GetMapping("/flight")
     public Flight flight(@RequestParam(value = "dep", defaultValue = "") String dep,
                          @RequestParam(value = "arr", defaultValue = "") String arr) {
-
         AirportV2 depAirport = AirportRepositoy.findAirportByCode(getAirports(), dep);
         AirportV2 arrAirport = AirportRepositoy.findAirportByCode(getAirports(), arr);
 
         return new Flight(depAirport, arrAirport);
     }
 
-    @RequestMapping("/duration")
+    @GetMapping("/duration")
     public double dist(@RequestParam(value = "dep", defaultValue = "") String dep,
                        @RequestParam(value = "arr", defaultValue = "") String arr) {
         AirportV2 depAirport = AirportRepositoy.findAirportByCode(getAirports(), dep);
@@ -42,8 +41,7 @@ public class FlightController {
         return flight.getDuration();
     }
 
-
-    @RequestMapping("/ap")
+    @GetMapping("/ap")
     public List<AirportV2> getAirport(@RequestParam(value = "code", defaultValue = "") String code,
                                       @RequestParam(value = "icao", defaultValue = "") String icao,
                                       @RequestParam(value = "name", defaultValue = "") String name) {

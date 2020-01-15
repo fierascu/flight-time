@@ -1,6 +1,5 @@
 package com.flighttime.config;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -11,11 +10,20 @@ import org.springframework.context.annotation.Configuration;
 public class YAMLConfig {
 
     private static final String DEFAULT_PROTOCOL = "http";
+
     private static final String DEFAULT_HOST = "localhost";
+
     private static final int DEFAULT_PORT = 8082;
 
     private static String protocol;
+
     private static String host;
+
+    private static int port;
+
+    YAMLConfig() {
+
+    }
 
     public static String getProtocol() {
         return protocol == null ? DEFAULT_PROTOCOL : protocol;
@@ -40,7 +48,5 @@ public class YAMLConfig {
     public static void setPort(int port) {
         YAMLConfig.port = port;
     }
-
-    private static int port;
 
 }
