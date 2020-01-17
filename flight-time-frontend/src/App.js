@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Table from './Table';
+import Form from './Form';
+import Api from './Api';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    state = {
+        characters: []
+    };
+
+    removeCharacter = index => {
+        const { characters } = this.state;
+    
+        this.setState({
+            characters: characters.filter((character, i) => { 
+                return i !== index;
+            })
+        });
+    }
+
+    handleSubmit = character => {
+        this.setState({characters: [this.state.characters, character]});
+    }
+
+    render() {
+        const { characters } = this.state;
+        
+        return (
+            <div className="container">
+            <h3>Flight Time</h3>
+            <p>Easy to use with clean interface application for finding airports</p>
+            <h3>Search</h3>
+                <Form handleSubmit={this.handleSubmit} />
+
+                <h1>Results</h1>                
+                <Table characterData={characters} />
+            </div>
+        );
+    }
 }
 
 export default App;
