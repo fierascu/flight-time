@@ -1,11 +1,11 @@
-package com.flighttime.flight;
-
-import static com.flighttime.app.Utils.formatDouble;
+package com.flighttime.model;
 
 import com.flighttime.app.Utils;
 import com.javadocmd.simplelatlng.LatLng;
 import com.javadocmd.simplelatlng.LatLngTool;
 import com.javadocmd.simplelatlng.util.LengthUnit;
+
+import static com.flighttime.app.Utils.formatDouble;
 
 public class Flight {
 
@@ -16,10 +16,6 @@ public class Flight {
     private double arrLat;
 
     private double arrLon;
-
-    private double depElev;
-
-    private double arrElev;
 
     private String depAeroport;
 
@@ -104,8 +100,6 @@ public class Flight {
                 ", depLon=" + depLon +
                 ", arrLat=" + arrLat +
                 ", arrLon=" + arrLon +
-                ", depElev=" + depElev +
-                ", arrElev=" + arrElev +
                 ", depAeroport='" + depAeroport + '\'' +
                 ", arrAeroport='" + arrAeroport + '\'' +
                 ", dist=" + dist +

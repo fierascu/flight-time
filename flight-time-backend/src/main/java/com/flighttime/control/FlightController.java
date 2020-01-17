@@ -1,17 +1,17 @@
 package com.flighttime.control;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.flighttime.flight.AirportV2;
-import com.flighttime.flight.Flight;
-import com.flighttime.app.Utils;
+import com.flighttime.model.AirportV2;
+import com.flighttime.model.Flight;
+import com.flighttime.repository.AirportRepositoy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class FlightController {
@@ -21,7 +21,7 @@ public class FlightController {
 
     public List<AirportV2> getAirports() {
         if (airports.isEmpty()) {
-            airports = Utils.jsonProcessing();
+            airports = AirportRepositoy.jsonProcessing();
         }
         return airports;
     }
@@ -67,6 +67,7 @@ public class FlightController {
             aps.add(findAirportContainingName(getAirports(), name));
         }
 
+        logger.info( "airports: " + aps);
         return aps;
     }
 
