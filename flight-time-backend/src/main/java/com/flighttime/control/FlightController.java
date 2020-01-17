@@ -6,12 +6,17 @@ import java.util.List;
 import com.flighttime.flight.AirportV2;
 import com.flighttime.flight.Flight;
 import com.flighttime.app.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FlightController {
+    private static Logger logger = LoggerFactory.getLogger(FlightController.class);
+
     List<AirportV2> airports = new ArrayList<>();
 
     public List<AirportV2> getAirports() {
@@ -21,6 +26,7 @@ public class FlightController {
         return airports;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/flight")
     public Flight flight(@RequestParam(value = "dep", defaultValue = "") String dep,
                          @RequestParam(value = "arr", defaultValue = "") String arr) {
@@ -28,7 +34,9 @@ public class FlightController {
         AirportV2 depAirport = findAirportByCode(getAirports(), dep);
         AirportV2 arrAirport = findAirportByCode(getAirports(), arr);
 
-        return new Flight(depAirport, arrAirport);
+        final Flight flight = new Flight(depAirport, arrAirport);
+        logger.info( "flight: " + flight.toString());
+        return flight;
     }
 
     @RequestMapping("/duration")
@@ -38,6 +46,7 @@ public class FlightController {
         AirportV2 arrAirport = findAirportByCode(getAirports(), arr);
 
         final Flight flight = new Flight(depAirport, arrAirport);
+        logger.info( "duration: " + flight.getDuration());
         return flight.getDuration();
     }
 

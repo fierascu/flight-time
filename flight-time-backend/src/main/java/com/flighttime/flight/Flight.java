@@ -9,92 +9,109 @@ import com.javadocmd.simplelatlng.util.LengthUnit;
 
 public class Flight {
 
-  private double depLat;
+    private double depLat;
 
-  private double depLon;
+    private double depLon;
 
-  private double arrLat;
+    private double arrLat;
 
-  private double arrLon;
+    private double arrLon;
 
-  private double depElev;
+    private double depElev;
 
-  private double arrElev;
+    private double arrElev;
 
-  private String depAeroport;
+    private String depAeroport;
 
-  private String arrAeroport;
+    private String arrAeroport;
 
-  private double dist;
+    private double dist;
 
-  private double duration;
+    private double duration;
 
-  private String durationAsTime;
+    private String durationAsTime;
 
-  public Flight(AirportV2 depAirport, AirportV2 arrAeroport) {
-    this.depAeroport = depAirport.getCode();
-    this.arrAeroport = arrAeroport.getCode();
-    this.depLat = Double.parseDouble(depAirport.getLat());
-    this.depLon = Double.parseDouble(depAirport.getLon());
-    this.arrLat = Double.parseDouble(arrAeroport.getLat());
-    this.arrLon = Double.parseDouble(arrAeroport.getLon());
+    public Flight(AirportV2 depAirport, AirportV2 arrAeroport) {
+        this.depAeroport = depAirport.getCode();
+        this.arrAeroport = arrAeroport.getCode();
+        this.depLat = Double.parseDouble(depAirport.getLat());
+        this.depLon = Double.parseDouble(depAirport.getLon());
+        this.arrLat = Double.parseDouble(arrAeroport.getLat());
+        this.arrLon = Double.parseDouble(arrAeroport.getLon());
 
-    LatLng depLng = new LatLng(depLat, depLon);
-    LatLng arrLng = new LatLng(arrLat, arrLon);
+        LatLng depLng = new LatLng(depLat, depLon);
+        LatLng arrLng = new LatLng(arrLat, arrLon);
 
-    this.dist = formatDouble(LatLngTool.distance(depLng, arrLng, LengthUnit.NAUTICAL_MILE));
+        this.dist = formatDouble(LatLngTool.distance(depLng, arrLng, LengthUnit.NAUTICAL_MILE));
 
-    this.duration = formatDouble(Utils.calculateDurationFromMiles(dist));
+        this.duration = formatDouble(Utils.calculateDurationFromMiles(dist));
 
-    this.durationAsTime = Utils.getDurationAsTime(duration);
-  }
+        this.durationAsTime = Utils.getDurationAsTime(duration);
+    }
 
-  public double getDepLat() {
-    return depLat;
-  }
+    public double getDepLat() {
+        return depLat;
+    }
 
-  public double getDepLon() {
-    return depLon;
-  }
+    public double getDepLon() {
+        return depLon;
+    }
 
-  public double getArrLat() {
-    return arrLat;
-  }
+    public double getArrLat() {
+        return arrLat;
+    }
 
-  public double getArrLon() {
-    return arrLon;
-  }
+    public double getArrLon() {
+        return arrLon;
+    }
 
-  public String getDepAeroport() {
-    return depAeroport;
-  }
+    public String getDepAeroport() {
+        return depAeroport;
+    }
 
-  public String getArrAeroport() {
-    return arrAeroport;
-  }
+    public String getArrAeroport() {
+        return arrAeroport;
+    }
 
-  public double getDist() {
-    return dist;
-  }
+    public double getDist() {
+        return dist;
+    }
 
-  public void setDist(double dist) {
-    this.dist = dist;
-  }
+    public void setDist(double dist) {
+        this.dist = dist;
+    }
 
-  public double getDuration() {
-    return duration;
-  }
+    public double getDuration() {
+        return duration;
+    }
 
-  public void setDuration(double duration) {
-    this.duration = duration;
-  }
+    public void setDuration(double duration) {
+        this.duration = duration;
+    }
 
-  public String getDurationAsTime() {
-    return durationAsTime;
-  }
+    public String getDurationAsTime() {
+        return durationAsTime;
+    }
 
-  public void setDurationAsTime(String durationAsTime) {
-    this.durationAsTime = durationAsTime;
-  }
+    public void setDurationAsTime(String durationAsTime) {
+        this.durationAsTime = durationAsTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "depLat=" + depLat +
+                ", depLon=" + depLon +
+                ", arrLat=" + arrLat +
+                ", arrLon=" + arrLon +
+                ", depElev=" + depElev +
+                ", arrElev=" + arrElev +
+                ", depAeroport='" + depAeroport + '\'' +
+                ", arrAeroport='" + arrAeroport + '\'' +
+                ", dist=" + dist +
+                ", duration=" + duration +
+                ", durationAsTime='" + durationAsTime + '\'' +
+                '}';
+    }
 
 }
