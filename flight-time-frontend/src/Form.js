@@ -32,14 +32,14 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.onFormSubmit}>
-                <label for="dep">Departure airport</label>
+                <label htmlFor="dep">Departure airport</label>
                 <input 
                     type="text" 
                     name="dep" 
                     id="dep"
                     value={dep} 
                     onChange={this.handleChange} />
-                <label for="arr">Arrival airport</label>
+                <label htmlFor="arr">Arrival airport</label>
                 <input 
                     type="text" 
                     name="arr" 
