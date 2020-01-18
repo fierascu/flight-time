@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import com.flighttime.controller.FlightController;
-import com.flighttime.repository.AirportRepositoy;
+import com.flighttime.repository.AirportRepository;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,8 +26,8 @@ public class FlightControllerTest {
   @Test
   public void jsonCanLoaded() {
     FlightController testerFlightController = new FlightController();
-    assertFalse(AirportRepositoy.jsonProcessing().isEmpty());
-    assertEquals(3885, AirportRepositoy.jsonProcessing().size());
+    assertFalse(AirportRepository.jsonProcessing().isEmpty());
+    assertEquals(3885, AirportRepository.jsonProcessing().size());
 
     logger.info("jsonCanLoaded: ok");
   }
@@ -35,8 +35,8 @@ public class FlightControllerTest {
   @Test
   public void jsonFindAirport() {
     FlightController testerFlightController = new FlightController();
-    List<AirportV2> airports = AirportRepositoy.jsonProcessing();
-    AirportV2 airport = AirportRepositoy.findAirportByCode(airports, "VIE");
+    List<AirportV2> airports = AirportRepository.jsonProcessing();
+    AirportV2 airport = AirportRepository.findAirportByCode(airports, "VIE");
     assertEquals("VIE", airport.getCode());
     assertEquals("Vienna Schwechat International Airport", airport.getName());
     logger.info("jsonFindAirport: airport: " + airport);
@@ -45,8 +45,8 @@ public class FlightControllerTest {
   @Test
   public void jsonFindAirportNegative() {
     FlightController testerFlightController = new FlightController();
-    List<AirportV2> airports = AirportRepositoy.jsonProcessing();
-    AirportV2 airport = AirportRepositoy.findAirportByCode(airports, "NOT_EXISTING");
+    List<AirportV2> airports = AirportRepository.jsonProcessing();
+    AirportV2 airport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING");
 
     logger.info("jsonFindAirportNegative: not found" + airport);
   }

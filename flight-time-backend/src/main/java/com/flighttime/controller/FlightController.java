@@ -1,63 +1,77 @@
 package com.flighttime.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.web.bind.annotation.GetMapping;
+import com.flighttime.model.AirportV2;
+import com.flighttime.model.Flight;
+import com.flighttime.repository.AirportRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.flighttime.model.AirportV2;
-import com.flighttime.model.Flight;
-import com.flighttime.repository.AirportRepositoy;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.flighttime.repository.AirportRepository.*;
 
 @RestController
 public class FlightController {
+    private static Logger logger = LoggerFactory.getLogger(FlightController.class);
+
     List<AirportV2> airports = new ArrayList<>();
 
     public List<AirportV2> getAirports() {
         if (airports.isEmpty()) {
-            airports = AirportRepositoy.jsonProcessing();
+            airports = AirportRepository.jsonProcessing();
         }
         return airports;
     }
 
-    @GetMapping("/flight")
+    @CrossOrigin(origins = "http://localhost:3000")
+    @RequestMapping("/flight")
     public Flight flight(@RequestParam(value = "dep", defaultValue = "") String dep,
                          @RequestParam(value = "arr", defaultValue = "") String arr) {
-        AirportV2 depAirport = AirportRepositoy.findAirportByCode(getAirports(), dep);
-        AirportV2 arrAirport = AirportRepositoy.findAirportByCode(getAirports(), arr);
 
-        return new Flight(depAirport, arrAirport);
-    }
-
-    @GetMapping("/duration")
-    public double dist(@RequestParam(value = "dep", defaultValue = "") String dep,
-                       @RequestParam(value = "arr", defaultValue = "") String arr) {
-        AirportV2 depAirport = AirportRepositoy.findAirportByCode(getAirports(), dep);
-        AirportV2 arrAirport = AirportRepositoy.findAirportByCode(getAirports(), arr);
+        AirportV2 depAirport = findAirportByCode(getAirports(), dep);
+        AirportV2 arrAirport = findAirportByCode(getAirports(), arr);
 
         final Flight flight = new Flight(depAirport, arrAirport);
+        logger.info("flight: " + flight.toString());
+        return flight;
+    }
+
+    @RequestMapping("/duration")
+    public double dist(@RequestParam(value = "dep", defaultValue = "") String dep,
+                       @RequestParam(value = "arr", defaultValue = "") String arr) {
+        AirportV2 depAirport = findAirportByCode(getAirports(), dep);
+        AirportV2 arrAirport = findAirportByCode(getAirports(), arr);
+
+        final Flight flight = new Flight(depAirport, arrAirport);
+        logger.info("duration: " + flight.getDuration());
         return flight.getDuration();
     }
 
-    @GetMapping("/ap")
+
+    @RequestMapping("/ap")
     public List<AirportV2> getAirport(@RequestParam(value = "code", defaultValue = "") String code,
                                       @RequestParam(value = "icao", defaultValue = "") String icao,
                                       @RequestParam(value = "name", defaultValue = "") String name) {
         List<AirportV2> aps = new ArrayList<>();
 
         if (!code.isEmpty()) {
-            aps.add(AirportRepositoy.findAirportByCode(getAirports(), code));
+            aps.add(findAirportByCode(getAirports(), code));
         }
         if (!icao.isEmpty()) {
-            aps.add(AirportRepositoy.findAirportByIcao(getAirports(), icao));
+            aps.add(findAirportByIcao(getAirports(), icao));
         }
         if (!name.isEmpty()) {
-            aps.add(AirportRepositoy.findAirportContainingName(getAirports(), name));
+            aps.add(findAirportContainingName(getAirports(), name));
         }
 
+        logger.info("airports: " + aps);
         return aps;
     }
+
 
 }
