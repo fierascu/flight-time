@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Table from './Table';
 import Form from './Form';
+import Api from './Api';
 
 class App extends Component {
     state = {
@@ -33,6 +34,7 @@ class App extends Component {
 
                 <h1>Results</h1>                
                 <Table characterData={characters} />
+                <Api />
             </div>
         );
     }

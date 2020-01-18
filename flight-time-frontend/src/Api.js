@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Api extends Component {
     state = {
@@ -6,15 +7,31 @@ class Api extends Component {
     };
 
     componentDidMount() {
-        const url = "http://localhost:8082/flight?dep=MUC&arr=TSR";
+        const url = "http://localhost:8082/";
 
-        fetch(url)
-            .then(result => result.json())
-            .then(result => {
-                this.setState({
-                    data: result
-                })
-            });
+        const instance = axios.create({
+            baseURL: url,
+            timeout: 1000,
+            headers: {'Access-Control-Allow-Origin': '*'}
+          });
+
+        instance.get('/flight', {
+            params: {
+              dep: 'MUC',
+              arr:'TSR'
+            }
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+
+
     }
 
     render() {
