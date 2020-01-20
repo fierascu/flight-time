@@ -2,48 +2,52 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 class Api extends Component {
-    state = {
-        data: []
-    };
+  state = {
+    data: []
+  };
 
-    componentDidMount() {
-        const url = "http://localhost:8082/";
+  componentDidMount() {
+    const url = "http://localhost:8082/";
 
-        const instance = axios.create({
-            baseURL: url,
-            timeout: 1000,
-            headers: {'Access-Control-Allow-Origin': '*'}
-          });
+    const instance = axios.create({
+      baseURL: url,
+      timeout: 1000,
+      headers: { 'Access-Control-Allow-Origin': '*' }
+    });
 
-        instance.get('/flight', {
-            params: {
-              dep: 'MUC',
-              arr:'TSR'
-            }
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-          .finally(function () {
-            // always executed
-          });
+    instance.get('/flight', {
+      params: {
+        dep: 'MUC',
+        arr: 'TSR'
+      }
+    })
+      .then(function (response) {
+        console.log(response.data);
+        this.setState({
+          data: response.data
+      })
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+        // always executed
+      });
 
 
-    }
+  }
 
-    render() {
-        const { data } = this.state;
+  render() {
+    const { data } = this.state;
 
-        const result = data.length === 0 ? <div></div> : data.map((entry, index) => {
-            console.log(entry);
-            return <li key={index}>{entry}</li>;
-        });
+    const result = data.length === 0 ? <div></div> : data.map((entry, index) => {
+      console.log(entry);
+      return <li key={index}>{entry}</li>;
+    });
 
-        return <div className="container"><ul>{result}</ul></div>;
-    }
+    return <div className="container"><ul>{result}</ul></div>;
+  }
 }
 
 export default Api;
