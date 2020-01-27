@@ -7,7 +7,10 @@ Goal: Clean interface and easy to use application for finding airports and durat
  * Doker
  * Junit comopnents/integration
  * Spring security, secure api with token
- * google analytics
+ * Google analytics
+ * Pagination for api
+ * What other data can be extracted from?
+ * Client jar
 
 
 ## Usefull links:
