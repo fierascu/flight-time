@@ -15,6 +15,8 @@ class Api extends Component {
       headers: { 'Access-Control-Allow-Origin': '*' }
     });
 
+    let currentComponent = this;
+
     instance.get('/flight', {
       params: {
         dep: 'MUC',
@@ -23,7 +25,7 @@ class Api extends Component {
     })
       .then(function (response) {
         console.log(response.data);
-        this.setState({
+        currentComponent.setState({
           data: response.data
       })
 
@@ -41,12 +43,12 @@ class Api extends Component {
   render() {
     const { data } = this.state;
 
-    const result = data.length === 0 ? <div></div> : data.map((entry, index) => {
-      console.log(entry);
-      return <li key={index}>{entry}</li>;
-    });
 
-    return <div className="container"><ul>{result}</ul></div>;
+    return <div className="container"><ul>
+    <li key={1}>dist: {data.dist}</li>
+      <li key={2}>duration: {data.duration}</li>
+      <li key={3}>durationAsTime: {data.durationAsTime}</li>
+      </ul></div>;
   }
 }
 

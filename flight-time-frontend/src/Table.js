@@ -4,8 +4,8 @@ const TableHeader = () => {
     return (
         <thead>
             <tr>
-                <th>Arrival</th>
-                <th>Departure</th>
+                <th>Flight</th>
+                <th>Time</th>
             </tr>
         </thead>
     );
@@ -15,8 +15,8 @@ const TableBody = props => {
     const rows = props.characterData.map((row, index) => {
         return (
             <tr key={index}>
-                <td>{row.arr}</td>
-                <td>{row.dep}</td>
+                <td>{row.flight}</td>
+                <td>{row.time}</td>
             </tr>
         );
     });
