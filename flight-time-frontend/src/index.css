@@ -190,6 +190,9 @@ body {
 p,
 ol,
 ul,
+ul li {
+  list-style-type : none;
+}
 dl,
 table {
   margin: 0 0 1.5rem 0; }
