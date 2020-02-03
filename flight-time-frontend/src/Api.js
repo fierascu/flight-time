@@ -44,7 +44,6 @@ class Api extends Component {
         currentComponent.setState({
           data: response.data
         })
-        console.log('response:' + response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -63,7 +62,10 @@ class Api extends Component {
       <li key={2}>Distance: {data.dist}</li>
       <li key={3}>Duration: {data.duration}</li>
       <li key={4}>Time: {data.durationAsTime}</li>
-    </ul></div>;
+    </ul>
+      {this.props.showAirportData !== 'on' ? null :
+        <div>{data.depApObj} {data.arrApObj}</div>}
+    </div>;
   }
 }
 

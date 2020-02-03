@@ -6,7 +6,8 @@ class Form extends Component {
 
         this.initialState = {
             dep: '',
-            arr: ''
+            arr: '',
+            showAirportData: false
         };
 
         this.state = this.initialState;
@@ -46,6 +47,13 @@ class Form extends Component {
                     id="arr"
                     value={arr}
                     onChange={this.handleChange} />
+                <label>Show airport data
+                    <input
+                        name="showAirportData"
+                        type="checkbox"
+                        checked={this.state.showAirportData}
+                        onChange={this.handleChange} />
+                </label>
                 <button type="submit">
                     Search
                 </button>
