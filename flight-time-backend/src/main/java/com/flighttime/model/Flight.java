@@ -27,13 +27,17 @@ public class Flight {
 
     private String durationAsTime;
 
-    public Flight(AirportV2 depAirport, AirportV2 arrAeroport) {
+    public Flight(AirportV2 depAirport, AirportV2 arrAirport) {
+        if (depAirport == null || arrAirport == null) {
+            return;
+        }
+
         this.depAeroport = depAirport.getCode();
-        this.arrAeroport = arrAeroport.getCode();
+        this.arrAeroport = arrAirport.getCode();
         this.depLat = Double.parseDouble(depAirport.getLat());
         this.depLon = Double.parseDouble(depAirport.getLon());
-        this.arrLat = Double.parseDouble(arrAeroport.getLat());
-        this.arrLon = Double.parseDouble(arrAeroport.getLon());
+        this.arrLat = Double.parseDouble(arrAirport.getLat());
+        this.arrLon = Double.parseDouble(arrAirport.getLon());
 
         LatLng depLng = new LatLng(depLat, depLon);
         LatLng arrLng = new LatLng(arrLat, arrLon);
