@@ -30,7 +30,6 @@ class App extends Component {
 
                 <Tabs>
                     <div label="flight">
-
                         <div className="container">
                             <h3>Flight Time</h3>
                             <p>Easy to use with clean interface application for calculating flight time between two airports</p>

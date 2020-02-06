@@ -13,7 +13,9 @@ import java.lang.invoke.MethodHandles;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AirportRepository {
 
@@ -58,11 +60,12 @@ public class AirportRepository {
                 .orElse(null);
     }
 
-    public static AirportV2 findAirportWildcard(List<AirportV2> airports, String wildcard) {
+    public static List<AirportV2> findAirportWildcard(List<AirportV2> airports, String wildcard) {
         return airports.stream().filter(
                 a -> a.getCode().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
                         || a.getIcao().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
-                        || a.getName().toLowerCase().contains(wildcard.toLowerCase())).findFirst()
-                .orElse(null);
+                        || a.getName().toLowerCase().contains(wildcard.toLowerCase()))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 }

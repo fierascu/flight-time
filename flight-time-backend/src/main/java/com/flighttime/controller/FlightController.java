@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static com.flighttime.repository.AirportRepository.*;
@@ -80,7 +81,8 @@ public class FlightController {
 
     public List<AirportV2> getAirportWildcard(String wildcard) {
         List<AirportV2> aps = new ArrayList<>();
-        aps.add(findAirportWildcard(getAirports(), wildcard));
+        aps.addAll(findAirportWildcard(getAirports(), wildcard));
+        aps.removeAll(Collections.singleton(null));
         logger.info("airports: " + aps);
         return aps;
     }

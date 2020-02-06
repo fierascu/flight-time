@@ -26,7 +26,7 @@ class AirportApi extends Component {
 
     const instance = axios.create({
       baseURL: url,
-      timeout: 1000,
+      timeout: 2000,
       headers: { 'Access-Control-Allow-Origin': '*' }
     });
 
