@@ -16,6 +16,7 @@ import java.util.List;
 import static com.flighttime.repository.AirportRepository.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class FlightController {
     private static Logger logger = LoggerFactory.getLogger(FlightController.class);
 
@@ -28,7 +29,6 @@ public class FlightController {
         return airports;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping("/flight")
     public Flight flight(@RequestParam(value = "dep", defaultValue = "") String dep,
                          @RequestParam(value = "arr", defaultValue = "") String arr) {
@@ -56,8 +56,13 @@ public class FlightController {
     @RequestMapping("/ap")
     public List<AirportV2> getAirport(@RequestParam(value = "code", defaultValue = "") String code,
                                       @RequestParam(value = "icao", defaultValue = "") String icao,
-                                      @RequestParam(value = "name", defaultValue = "") String name) {
+                                      @RequestParam(value = "name", defaultValue = "") String name,
+                                      @RequestParam(value = "wildcard", defaultValue = "") String wildcard) {
         List<AirportV2> aps = new ArrayList<>();
+
+        if (!wildcard.isEmpty()) {
+            return getAirportWildcard(wildcard);
+        }
 
         if (!code.isEmpty()) {
             aps.add(findAirportByCode(getAirports(), code));
@@ -73,5 +78,11 @@ public class FlightController {
         return aps;
     }
 
+    public List<AirportV2> getAirportWildcard(String wildcard) {
+        List<AirportV2> aps = new ArrayList<>();
+        aps.add(findAirportWildcard(getAirports(), wildcard));
+        logger.info("airports: " + aps);
+        return aps;
+    }
 
 }

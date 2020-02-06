@@ -19,6 +19,8 @@ public class AirportRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
 
+    // TODO airport code and icao should be stored as lowercase or uppercase to omit one transformation;
+    // Probably uppercase because the frontend should uppercase the response?
     AirportRepository() {
     }
 
@@ -53,6 +55,14 @@ public class AirportRepository {
 
     public static AirportV2 findAirportContainingName(List<AirportV2> airports, String name) {
         return airports.stream().filter(a -> a.getName().toLowerCase().contains(name.toLowerCase())).findFirst()
+                .orElse(null);
+    }
+
+    public static AirportV2 findAirportWildcard(List<AirportV2> airports, String wildcard) {
+        return airports.stream().filter(
+                a -> a.getCode().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
+                        || a.getIcao().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
+                        || a.getName().toLowerCase().contains(wildcard.toLowerCase())).findFirst()
                 .orElse(null);
     }
 }
