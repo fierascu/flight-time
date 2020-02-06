@@ -3,6 +3,7 @@ import Form from './Form';
 import AirportForm from './AirportForm';
 import Api from './Api';
 import AirportApi from './AirportApi';
+import Tabs from './Tabs';
 
 class App extends Component {
     state = {
@@ -24,23 +25,35 @@ class App extends Component {
 
     render() {
         const { arr, dep, showAirportData, airportText } = this.state;
-        return (<div className="container">Flight Time Calculator| Airport Finder
+        return (
             <div className="container">
-                <h3>Flight Time</h3>
-                <p>Easy to use with clean interface application for calculating flight time between two airports</p>
-                <h3>Search</h3>
-                <Form handleSubmit={this.handleSubmit} />
-                <h1>Results</h1>
-                <Api arr={arr} dep={dep} showAirportData={showAirportData} />
+
+                <Tabs>
+                    <div label="flight">
+
+                        <div className="container">
+                            <h3>Flight Time</h3>
+                            <p>Easy to use with clean interface application for calculating flight time between two airports</p>
+                            <h3>Search</h3>
+                            <Form handleSubmit={this.handleSubmit} />
+                            <h1>Results</h1>
+                            <Api arr={arr} dep={dep} showAirportData={showAirportData} />
+                        </div>
+                    </div>
+                    <div label="airport">
+                        <div className="container">
+                            <h3>Airport</h3>
+                            <p>Easy to use with clean interface application for searching an airports</p>
+                            <h3>Search</h3>
+                            <AirportForm handleSubmit={this.handleSubmit} />
+                            <h1>Results</h1>
+                            <AirportApi airportText={airportText} />
+                        </div>
+                    </div>
+                </Tabs>
             </div>
-            <div className="container">
-                <h3>Airport</h3>
-                <p>Easy to use with clean interface application for searching an airports</p>
-                <h3>Search</h3>
-                <AirportForm handleSubmit={this.handleSubmit} />
-                <h1>Results</h1>
-                <AirportApi airportText={airportText} />
-            </div></div>
+
+
         );
     }
 }
