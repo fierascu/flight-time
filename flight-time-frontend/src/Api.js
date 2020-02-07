@@ -58,7 +58,7 @@ class Api extends Component {
     const { data } = this.state;
 
     return data === undefined ? null : <div><ul>
-      <li key={1}>From <b>{this.props.dep}</b> to <b>{this.props.arr}</b></li>
+      <li key={1}>From <span role="img" aria-label="departure airport">🛫</span> <b>{this.props.dep}</b> to <span role="img" aria-label="arrival airport">🛬</span> <b>{this.props.arr}</b></li>
       <li key={2}>Distance: {data.dist}</li>
       <li key={3}>Duration: {data.duration}</li>
       <li key={4}>Time: {data.durationAsTime}</li>

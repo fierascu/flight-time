@@ -29,7 +29,7 @@ class App extends Component {
             <div className="container">
 
                 <Tabs>
-                    <div label="flight">
+                    <div label="✈️ Flight">
                         <div className="container">
                             <h3>Flight Time</h3>
                             <p>Easy to use with clean interface application for calculating flight time between two airports</p>
@@ -39,7 +39,7 @@ class App extends Component {
                             <Api arr={arr} dep={dep} showAirportData={showAirportData} />
                         </div>
                     </div>
-                    <div label="airport">
+                    <div label="🚩 Airport">
                         <div className="container">
                             <h3>Airport</h3>
                             <p>Easy to use with clean interface application for searching an airports</p>
