@@ -47,12 +47,13 @@ class Form extends Component {
                     id="arr"
                     value={arr}
                     onChange={this.handleChange} />
-                <label>Show airport data
+                <label>
                     <input
                         name="showAirportData"
                         type="checkbox"
                         checked={this.state.showAirportData}
                         onChange={this.handleChange} />
+                        Show airport data
                 </label>
                 <button type="submit">
                     Search

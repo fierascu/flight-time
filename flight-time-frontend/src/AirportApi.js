@@ -56,19 +56,31 @@ class AirportApi extends Component {
     const { data } = this.state;
     console.log(data);
 
-    return data === undefined ? null : 
-    <div>
-      <p>Airport <b>{this.props.airportText}</b></p>
-      
-      {/* {data.map((row, index) => {
+    const aeroportTable =
+      <table>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Name</th>
+            <th>Came</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, index) =>
             <tr key={index}>
-                <td>{row.name}</td>
-                <td>{row.job}</td>
-                <td><button onClick={() => props.removeCharacter(index)}>Delete</button></td>
-            </tr>}} */}
-       
-    
-    </div>;
+              <td>{row.city}</td>
+              <td>{row.name}</td>
+              <td>{row.code}</td>
+            </tr>
+          )}
+        </tbody>
+      </table>;
+
+    return data === undefined ? null :
+      <div>
+        <p>Airport <b>{this.props.airportText}</b></p>
+        {aeroportTable}
+      </div>;
   }
 }
 
