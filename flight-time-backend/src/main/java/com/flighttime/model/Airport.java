@@ -1,149 +1,232 @@
 package com.flighttime.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Airport {
 
-  private String id;
+    private int id;
+    private String ident;
+    private String type;
+    private String name;
+    private double latitude_deg;
+    private double longitude_deg;
+    private int elevation_ft;
+    private String continent;
+    private String iso_country;
+    private String iso_region;
+    private String municipality;
+    private boolean scheduled_service;
+    private String gps_code;
+    private String iata_code;
+    private String local_code;
+    private String home_link;
+    private String wikipedia_link;
+    private String keywords;
+    private String score;
+    private LocalDateTime last_updated;
 
-  private String icao;
+  public Airport() {
 
-  private String iata;
-
-  private String name;
-
-  private String city;
-
-  private String state;
-
-  private String country;
-
-  private String elevation;
-
-  private long lat;
-
-  private long lon;
-
-  private String tz;
-
-  public String getId() {
-    return id;
   }
 
-  public void setId(String id) {
-    this.id = id;
-  }
+  public int getId() {
+        return id;
+    }
 
-  public String getIcao() {
-    return icao;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public void setIcao(String icao) {
-    this.icao = icao;
-  }
+    public String getIdent() {
+        return ident;
+    }
 
-  public String getIata() {
-    return iata;
-  }
+    public void setIdent(String ident) {
+        this.ident = ident;
+    }
 
-  public void setIata(String iata) {
-    this.iata = iata;
-  }
+    public String getType() {
+        return type;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public String getCity() {
-    return city;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setCity(String city) {
-    this.city = city;
-  }
+    public double getLatitude_deg() {
+        return latitude_deg;
+    }
 
-  public String getState() {
-    return state;
-  }
+    public void setLatitude_deg(double latitude_deg) {
+        this.latitude_deg = latitude_deg;
+    }
 
-  public void setState(String state) {
-    this.state = state;
-  }
+    public double getLongitude_deg() {
+        return longitude_deg;
+    }
 
-  public String getCountry() {
-    return country;
-  }
+    public void setLongitude_deg(double longitude_deg) {
+        this.longitude_deg = longitude_deg;
+    }
 
-  public void setCountry(String country) {
-    this.country = country;
-  }
+    public int getElevation_ft() {
+        return elevation_ft;
+    }
 
-  public String getElevation() {
-    return elevation;
-  }
+    public void setElevation_ft(int elevation_ft) {
+        this.elevation_ft = elevation_ft;
+    }
 
-  public void setElevation(String elevation) {
-    this.elevation = elevation;
-  }
+    public String getContinent() {
+        return continent;
+    }
 
-  public long getLat() {
-    return lat;
-  }
+    public void setContinent(String continent) {
+        this.continent = continent;
+    }
 
-  public void setLat(long lat) {
-    this.lat = lat;
-  }
+    public String getIso_country() {
+        return iso_country;
+    }
 
-  public long getLon() {
-    return lon;
-  }
+    public void setIso_country(String iso_country) {
+        this.iso_country = iso_country;
+    }
 
-  public void setLon(long lon) {
-    this.lon = lon;
-  }
+    public String getIso_region() {
+        return iso_region;
+    }
 
-  public String getTz() {
-    return tz;
-  }
+    public void setIso_region(String iso_region) {
+        this.iso_region = iso_region;
+    }
 
-  public void setTz(String tz) {
-    this.tz = tz;
-  }
+    public String getMunicipality() {
+        return municipality;
+    }
 
-  public Airport(String id, String icao, String iata, String name, String city, String state, String country,
-                 String elevation, long lat, long lon, String tz) {
-    this.id = id;
-    this.icao = icao;
-    this.iata = iata;
-    this.name = name;
-    this.city = city;
-    this.state = state;
-    this.country = country;
-    this.elevation = elevation;
-    this.lat = lat;
-    this.lon = lon;
-    this.tz = tz;
-  }
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-      if (this == o) {
-          return true;
-      }
-      if (!(o instanceof Airport)) {
-          return false;
-      }
-    Airport airport = (Airport)o;
-    return getId().equals(airport.getId());
-  }
+    public boolean isScheduled_service() {
+        return scheduled_service;
+    }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(getId());
-  }
+    public void setScheduled_service(boolean scheduled_service) {
+        this.scheduled_service = scheduled_service;
+    }
+
+    public String getGps_code() {
+        return gps_code;
+    }
+
+    public void setGps_code(String gps_code) {
+        this.gps_code = gps_code;
+    }
+
+    public String getIata_code() {
+        return iata_code;
+    }
+
+    public void setIata_code(String iata_code) {
+        this.iata_code = iata_code;
+    }
+
+    public String getLocal_code() {
+        return local_code;
+    }
+
+    public void setLocal_code(String local_code) {
+        this.local_code = local_code;
+    }
+
+    public String getHome_link() {
+        return home_link;
+    }
+
+    public void setHome_link(String home_link) {
+        this.home_link = home_link;
+    }
+
+    public String getWikipedia_link() {
+        return wikipedia_link;
+    }
+
+    public void setWikipedia_link(String wikipedia_link) {
+        this.wikipedia_link = wikipedia_link;
+    }
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public LocalDateTime getLast_updated() {
+        return last_updated;
+    }
+
+    public void setLast_updated(LocalDateTime last_updated) {
+        this.last_updated = last_updated;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Airport)) return false;
+        Airport airport = (Airport) o;
+        return Double.compare(airport.getLatitude_deg(), getLatitude_deg()) == 0 &&
+                Double.compare(airport.getLongitude_deg(), getLongitude_deg()) == 0 &&
+                Objects.equals(getName(), airport.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getLatitude_deg(), getLongitude_deg());
+    }
+
+    public Airport(int id, String ident, String type, String name, double latitude_deg, double longitude_deg, int elevation_ft, String continent, String iso_country, String iso_region, String municipality, boolean scheduled_service, String gps_code, String iata_code, String local_code, String home_link, String wikipedia_link, String keywords, String score, LocalDateTime last_updated) {
+        this.id = id;
+        this.ident = ident;
+        this.type = type;
+        this.name = name;
+        this.latitude_deg = latitude_deg;
+        this.longitude_deg = longitude_deg;
+        this.elevation_ft = elevation_ft;
+        this.continent = continent;
+        this.iso_country = iso_country;
+        this.iso_region = iso_region;
+        this.municipality = municipality;
+        this.scheduled_service = scheduled_service;
+        this.gps_code = gps_code;
+        this.iata_code = iata_code;
+        this.local_code = local_code;
+        this.home_link = home_link;
+        this.wikipedia_link = wikipedia_link;
+        this.keywords = keywords;
+        this.score = score;
+        this.last_updated = last_updated;
+    }
 
 }
