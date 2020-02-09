@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,23 +14,25 @@ import static org.junit.jupiter.api.Assertions.*;
 public class FlightControllerTest {
 
     private static Logger logger = LoggerFactory.getLogger(FlightControllerTest.class);
+    private static List<Airport> airports = new ArrayList<>();
 
     @BeforeAll
     public static void setup() {
+
+        airports = AirportRepository.csvProcessing();
         logger.info("startup: loading airports");
     }
 
     @Test
     public void jsonCanLoaded() {
         assertFalse(AirportRepository.csvProcessing().isEmpty());
-        assertEquals(3885, AirportRepository.csvProcessing().size());
+        assertEquals(55803, AirportRepository.csvProcessing().size());
 
         logger.info("jsonCanLoaded: ok");
     }
 
     @Test
     public void jsonFindAirport() {
-        List<Airport> airports = AirportRepository.csvProcessing();
         Airport airport = AirportRepository.findAirportByCode(airports, "VIE");
         assertEquals("VIE", airport.getIata_code());
         assertEquals("Vienna Schwechat International Airport", airport.getName());
@@ -38,7 +41,6 @@ public class FlightControllerTest {
 
     @Test
     public void jsonFindAirportNegative() {
-        List<Airport> airports = AirportRepository.csvProcessing();
         Airport airport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING");
 
         logger.info("jsonFindAirportNegative: not found" + airport);
@@ -46,7 +48,6 @@ public class FlightControllerTest {
 
     @Test
     public void jsonFindFlight() {
-        List<Airport> airports = AirportRepository.csvProcessing();
         Airport depAirport = AirportRepository.findAirportByCode(airports, "VIE");
         Airport arrAirport = AirportRepository.findAirportByCode(airports, "BUD");
 
@@ -60,7 +61,6 @@ public class FlightControllerTest {
 
     @Test
     public void jsonFindFlightNegative() {
-        List<Airport> airports = AirportRepository.csvProcessing();
         Airport depAirport = AirportRepository.findAirportByCode(airports, null);
         Airport arrAirport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING_AIRPORT");
 
