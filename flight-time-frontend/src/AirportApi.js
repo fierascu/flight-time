@@ -62,15 +62,17 @@ class AirportApi extends Component {
           <tr>
             <th>City</th>
             <th>Name</th>
-            <th>Came</th>
+            <th>Gps Code</th>
+            <th>Iata Code</th>
           </tr>
         </thead>
         <tbody>
           {data.map((row, index) =>
             <tr key={index}>
-              <td>{row.city}</td>
+              <td>{row.municipality}</td>
               <td>{row.name}</td>
-              <td>{row.code}</td>
+              <td>{row.gps_code}</td>
+              <td>{row.iata_code}</td>
             </tr>
           )}
         </tbody>

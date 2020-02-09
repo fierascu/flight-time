@@ -66,4 +66,12 @@ public class Utils {
         subjectString = Normalizer.normalize(subjectString, Normalizer.Form.NFD);
         return subjectString.replaceAll("[^\\x00-\\x7F]", "");
     }
+
+    public static double getSafeDouble(String doubleValue) {
+        try {
+            return Double.parseDouble(doubleValue);
+        } catch (NumberFormatException e) {
+            return 0.0;
+        }
+    }
 }

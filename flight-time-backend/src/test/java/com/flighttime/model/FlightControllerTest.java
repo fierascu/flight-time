@@ -35,7 +35,7 @@ public class FlightControllerTest {
     public void jsonFindAirport() {
         Airport airport = AirportRepository.findAirportByCode(airports, "VIE");
         assertEquals("VIE", airport.getIata_code());
-        assertEquals("Vienna Schwechat International Airport", airport.getName());
+        assertEquals("Vienna International Airport", airport.getName());
         logger.info("jsonFindAirport: airport: " + airport);
     }
 
