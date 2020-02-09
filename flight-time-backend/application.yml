@@ -2,3 +2,4 @@ server:
   protocol: http
   host: localhost
   port: 8082
+  crossOriginPort: 3000

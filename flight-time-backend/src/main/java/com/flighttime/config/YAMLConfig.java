@@ -21,8 +21,9 @@ public class YAMLConfig {
 
     private static int port;
 
-    YAMLConfig() {
+    private static int crossOriginPort;
 
+    YAMLConfig() {
     }
 
     public static String getProtocol() {
@@ -48,5 +49,14 @@ public class YAMLConfig {
     public static void setPort(int port) {
         YAMLConfig.port = port;
     }
+
+    public static int getCrossOriginPort() {
+        return crossOriginPort;
+    }
+
+    public static void setCrossOriginPort(int crossOriginPort) {
+        YAMLConfig.crossOriginPort = crossOriginPort;
+    }
+
 
 }
