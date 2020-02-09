@@ -21,34 +21,34 @@ public class FlightControllerTest {
 
     @Test
     public void jsonCanLoaded() {
-        assertFalse(AirportRepository.jsonProcessing().isEmpty());
-        assertEquals(3885, AirportRepository.jsonProcessing().size());
+        assertFalse(AirportRepository.csvProcessing().isEmpty());
+        assertEquals(3885, AirportRepository.csvProcessing().size());
 
         logger.info("jsonCanLoaded: ok");
     }
 
     @Test
     public void jsonFindAirport() {
-        List<AirportV2> airports = AirportRepository.jsonProcessing();
-        AirportV2 airport = AirportRepository.findAirportByCode(airports, "VIE");
-        assertEquals("VIE", airport.getCode());
+        List<Airport> airports = AirportRepository.csvProcessing();
+        Airport airport = AirportRepository.findAirportByCode(airports, "VIE");
+        assertEquals("VIE", airport.getIata_code());
         assertEquals("Vienna Schwechat International Airport", airport.getName());
         logger.info("jsonFindAirport: airport: " + airport);
     }
 
     @Test
     public void jsonFindAirportNegative() {
-        List<AirportV2> airports = AirportRepository.jsonProcessing();
-        AirportV2 airport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING");
+        List<Airport> airports = AirportRepository.csvProcessing();
+        Airport airport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING");
 
         logger.info("jsonFindAirportNegative: not found" + airport);
     }
 
     @Test
     public void jsonFindFlight() {
-        List<AirportV2> airports = AirportRepository.jsonProcessing();
-        AirportV2 depAirport = AirportRepository.findAirportByCode(airports, "VIE");
-        AirportV2 arrAirport = AirportRepository.findAirportByCode(airports, "BUD");
+        List<Airport> airports = AirportRepository.csvProcessing();
+        Airport depAirport = AirportRepository.findAirportByCode(airports, "VIE");
+        Airport arrAirport = AirportRepository.findAirportByCode(airports, "BUD");
 
         final Flight flight = new Flight(depAirport, arrAirport);
         logger.info("flight: " + flight.toString());
@@ -60,9 +60,9 @@ public class FlightControllerTest {
 
     @Test
     public void jsonFindFlightNegative() {
-        List<AirportV2> airports = AirportRepository.jsonProcessing();
-        AirportV2 depAirport = AirportRepository.findAirportByCode(airports, null);
-        AirportV2 arrAirport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING_AIRPORT");
+        List<Airport> airports = AirportRepository.csvProcessing();
+        Airport depAirport = AirportRepository.findAirportByCode(airports, null);
+        Airport arrAirport = AirportRepository.findAirportByCode(airports, "NOT_EXISTING_AIRPORT");
 
         final Flight flight = new Flight(depAirport, arrAirport);
         logger.info("flight: " + flight.toString());

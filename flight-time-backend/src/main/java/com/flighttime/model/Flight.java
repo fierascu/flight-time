@@ -17,9 +17,9 @@ public class Flight {
 
     private double arrLon;
 
-    private String depAeroport;
+    private String depAiroport;
 
-    private String arrAeroport;
+    private String arrAiroport;
 
     private double dist;
 
@@ -27,17 +27,17 @@ public class Flight {
 
     private String durationAsTime;
 
-    public Flight(AirportV2 depAirport, AirportV2 arrAirport) {
+    public Flight(Airport depAirport, Airport arrAirport) {
         if (depAirport == null || arrAirport == null) {
             return;
         }
 
-        this.depAeroport = depAirport.getCode();
-        this.arrAeroport = arrAirport.getCode();
-        this.depLat = Double.parseDouble(depAirport.getLat());
-        this.depLon = Double.parseDouble(depAirport.getLon());
-        this.arrLat = Double.parseDouble(arrAirport.getLat());
-        this.arrLon = Double.parseDouble(arrAirport.getLon());
+        this.depAiroport = depAirport.getIata_code();
+        this.arrAiroport = arrAirport.getIata_code();
+        this.depLat = depAirport.getLatitude_deg();
+        this.depLon = depAirport.getLongitude_deg();
+        this.arrLat = arrAirport.getLatitude_deg();
+        this.arrLon = arrAirport.getLongitude_deg();
 
         LatLng depLng = new LatLng(depLat, depLon);
         LatLng arrLng = new LatLng(arrLat, arrLon);
@@ -65,12 +65,12 @@ public class Flight {
         return arrLon;
     }
 
-    public String getDepAeroport() {
-        return depAeroport;
+    public String getDepAiroport() {
+        return depAiroport;
     }
 
-    public String getArrAeroport() {
-        return arrAeroport;
+    public String getArrAiroport() {
+        return arrAiroport;
     }
 
     public double getDist() {
@@ -104,8 +104,8 @@ public class Flight {
                 ", depLon=" + depLon +
                 ", arrLat=" + arrLat +
                 ", arrLon=" + arrLon +
-                ", depAeroport='" + depAeroport + '\'' +
-                ", arrAeroport='" + arrAeroport + '\'' +
+                ", depAeroport='" + depAiroport + '\'' +
+                ", arrAeroport='" + arrAiroport + '\'' +
                 ", dist=" + dist +
                 ", duration=" + duration +
                 ", durationAsTime='" + durationAsTime + '\'' +

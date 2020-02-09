@@ -1,70 +1,108 @@
 package com.flighttime.repository;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.flighttime.model.AirportV2;
+import com.flighttime.model.Airport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
-import java.io.InputStream;
+import java.io.*;
 import java.lang.invoke.MethodHandles;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class AirportRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
+    private static final String COMMA = ",";
 
     // TODO airport code and icao should be stored as lowercase or uppercase to omit one transformation;
     // Probably uppercase because the frontend should uppercase the response?
     AirportRepository() {
     }
 
-    public static List<AirportV2> jsonProcessing() {
-        List<AirportV2> airports = new ArrayList<>();
+    public static List<Airport> csvProcessing() {
+        List<Airport> airports = new ArrayList<>();
         try {
-            Resource resource = new ClassPathResource("airports_v2.json");
-
-            InputStream input = resource.getInputStream();
-            String jsonString;
-            try (Scanner scanner = new Scanner(input, StandardCharsets.UTF_8.name())) {
-                jsonString = scanner.useDelimiter("\\A").next();
-            }
-
-            ObjectMapper mapper = new ObjectMapper();
-            airports = mapper.readValue(jsonString,
-                    new TypeReference<ArrayList<AirportV2>>() {
-                    });
+            Resource resource = new ClassPathResource("world-airports.csv");
+            airports = processInputFile(resource.getFile().getAbsolutePath());
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
+        logger.info("Loaded " + airports.size() + " airports.");
         return airports;
     }
 
-    public static AirportV2 findAirportByCode(List<AirportV2> airports, String code) {
-        return airports.stream().filter(a -> a.getCode().equalsIgnoreCase(code)).findFirst().orElse(null);
+    private static List<Airport> processInputFile(String inputFilePath) {
+        List<Airport> inputList = new ArrayList<>();
+        try {
+            File inputF = new File(inputFilePath);
+            InputStream inputFS = new FileInputStream(inputF);
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputFS));
+            // skip the header of the csv
+            inputList = br.lines().skip(1).map(mapToItem).collect(Collectors.toList());
+            br.close();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        }
+        return inputList;
     }
 
-    public static AirportV2 findAirportByIcao(List<AirportV2> airports, String icao) {
-        return airports.stream().filter(a -> a.getIcao().equalsIgnoreCase(icao)).findFirst().orElse(null);
+
+    private static Function<String, Airport> mapToItem = (line) -> {
+        String[] p = line.split(COMMA);// a CSV has comma separated lines
+        Airport item = new Airport();
+        item.setId(Integer.parseInt(p[0]));
+        if (p[1] != null && p[1].trim().length() > 0) {
+            item.setIdent(p[1]);
+        }
+        if (p[2] != null && p[2].trim().length() > 0) {
+            item.setType(p[2]);
+        }
+        if (p[3] != null && p[3].trim().length() > 0) {
+            item.setContinent(p[3]);
+        }
+        if (p[4] != null && p[4].trim().length() > 0) {
+            item.setLatitude_deg(Double.parseDouble(p[4]));
+        }
+        if (p[5] != null && p[5].trim().length() > 0) {
+            item.setLongitude_deg(Double.parseDouble(p[5]));
+        }
+
+
+        if (p[12] != null && p[12].trim().length() > 0) {
+            item.setGps_code(p[12]);
+        }
+
+        if (p[13] != null && p[13].trim().length() > 0) {
+            item.setIata_code(p[13]);
+        }
+
+        return item;
+    };
+
+    public static Airport findAirportByCode(List<Airport> airports, String code) {
+        return airports.stream().filter(a -> a.getIata_code().equalsIgnoreCase(code)).findFirst().orElse(null);
     }
 
-    public static AirportV2 findAirportContainingName(List<AirportV2> airports, String name) {
+    public static Airport findAirportByIcao(List<Airport> airports, String icao) {
+        return airports.stream().filter(a -> a.getGps_code().equalsIgnoreCase(icao)).findFirst().orElse(null);
+    }
+
+    public static Airport findAirportContainingName(List<Airport> airports, String name) {
         return airports.stream().filter(a -> a.getName().toLowerCase().contains(name.toLowerCase())).findFirst()
                 .orElse(null);
     }
 
-    public static List<AirportV2> findAirportWildcard(List<AirportV2> airports, String wildcard) {
+    public static List<Airport> findAirportWildcard(List<Airport> airports, String wildcard) {
         return airports.stream().filter(
-                a -> a.getCode().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
-                        || a.getIcao().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
-                        || a.getName().toLowerCase().contains(wildcard.toLowerCase()))
+                a -> a.getIata_code().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
+                        || a.getGps_code().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
+                        || a.getName().toLowerCase().contains(wildcard.toLowerCase())
+                        || a.getMunicipality().toLowerCase().contains(wildcard.toLowerCase()))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
