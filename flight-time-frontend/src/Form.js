@@ -33,14 +33,14 @@ class Form extends Component {
 
         return (
             <form onSubmit={this.onFormSubmit}>
-                <label htmlFor="dep">Departure airport</label>
+                <label htmlFor="dep">Departure airport IATA Code</label>
                 <input
                     type="text"
                     name="dep"
                     id="dep"
                     value={dep}
                     onChange={this.handleChange} />
-                <label htmlFor="arr">Arrival airport</label>
+                <label htmlFor="arr">Arrival airport IATA Code</label>
                 <input
                     type="text"
                     name="arr"

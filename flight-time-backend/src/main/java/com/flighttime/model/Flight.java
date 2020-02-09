@@ -9,6 +9,10 @@ import static com.flighttime.app.Utils.formatDouble;
 
 public class Flight {
 
+    private Airport depAirport;
+
+    private Airport arrAirport;
+
     private double depLat;
 
     private double depLon;
@@ -17,9 +21,9 @@ public class Flight {
 
     private double arrLon;
 
-    private String depAiroport;
+    private String depAirportIataCode;
 
-    private String arrAiroport;
+    private String arrAirportIataCode;
 
     private double dist;
 
@@ -31,9 +35,11 @@ public class Flight {
         if (depAirport == null || arrAirport == null) {
             return;
         }
+        this.depAirport = depAirport;
+        this.arrAirport = arrAirport;
 
-        this.depAiroport = depAirport.getIata_code();
-        this.arrAiroport = arrAirport.getIata_code();
+        this.depAirportIataCode = depAirport.getIata_code();
+        this.arrAirportIataCode = arrAirport.getIata_code();
         this.depLat = depAirport.getLatitude_deg();
         this.depLon = depAirport.getLongitude_deg();
         this.arrLat = arrAirport.getLatitude_deg();
@@ -49,28 +55,68 @@ public class Flight {
         this.durationAsTime = Utils.getDurationAsTime(duration);
     }
 
+    public Airport getDepAirport() {
+        return depAirport;
+    }
+
+    public void setDepAirport(Airport depAirport) {
+        this.depAirport = depAirport;
+    }
+
+    public Airport getArrAirport() {
+        return arrAirport;
+    }
+
+    public void setArrAirport(Airport arrAirport) {
+        this.arrAirport = arrAirport;
+    }
+
     public double getDepLat() {
         return depLat;
+    }
+
+    public void setDepLat(double depLat) {
+        this.depLat = depLat;
     }
 
     public double getDepLon() {
         return depLon;
     }
 
+    public void setDepLon(double depLon) {
+        this.depLon = depLon;
+    }
+
     public double getArrLat() {
         return arrLat;
+    }
+
+    public void setArrLat(double arrLat) {
+        this.arrLat = arrLat;
     }
 
     public double getArrLon() {
         return arrLon;
     }
 
-    public String getDepAiroport() {
-        return depAiroport;
+    public void setArrLon(double arrLon) {
+        this.arrLon = arrLon;
     }
 
-    public String getArrAiroport() {
-        return arrAiroport;
+    public String getDepAirportIataCode() {
+        return depAirportIataCode;
+    }
+
+    public void setDepAirportIataCode(String depAirportIataCode) {
+        this.depAirportIataCode = depAirportIataCode;
+    }
+
+    public String getArrAirportIataCode() {
+        return arrAirportIataCode;
+    }
+
+    public void setArrAirportIataCode(String arrAirportIataCode) {
+        this.arrAirportIataCode = arrAirportIataCode;
     }
 
     public double getDist() {
@@ -100,16 +146,17 @@ public class Flight {
     @Override
     public String toString() {
         return "Flight{" +
-                "depLat=" + depLat +
+                "depAirport=" + depAirport +
+                ", arrAirport=" + arrAirport +
+                ", depLat=" + depLat +
                 ", depLon=" + depLon +
                 ", arrLat=" + arrLat +
                 ", arrLon=" + arrLon +
-                ", depAeroport='" + depAiroport + '\'' +
-                ", arrAeroport='" + arrAiroport + '\'' +
+                ", depAirportIataCode='" + depAirportIataCode + '\'' +
+                ", arrAirportIataCode='" + arrAirportIataCode + '\'' +
                 ", dist=" + dist +
                 ", duration=" + duration +
                 ", durationAsTime='" + durationAsTime + '\'' +
                 '}';
     }
-
 }
