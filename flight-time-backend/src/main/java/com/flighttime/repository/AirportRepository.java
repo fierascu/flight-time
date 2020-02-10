@@ -74,7 +74,7 @@ public class AirportRepository {
     }
 
     public static Airport findAirportContainingName(List<Airport> airports, String name) {
-        return airports.stream().filter(a -> a.getName().toLowerCase().contains(name.toLowerCase())).findFirst()
+        return airports.stream().filter(a -> Utils.normalize(a.getName().toLowerCase()).contains(Utils.normalize(name.toLowerCase()))).findFirst()
                 .orElse(null);
     }
 
@@ -82,8 +82,8 @@ public class AirportRepository {
         return airports.stream().filter(
                 a -> a.getIata_code().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
                         || a.getGps_code().toLowerCase().equalsIgnoreCase(wildcard.toLowerCase())
-                        || a.getName().toLowerCase().contains(wildcard.toLowerCase())
-                        || a.getMunicipality().toLowerCase().contains(wildcard.toLowerCase()))
+                        || Utils.normalize(a.getName().toLowerCase()).contains(wildcard.toLowerCase())
+                        || Utils.normalize(a.getMunicipality().toLowerCase()).contains(wildcard.toLowerCase()))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }

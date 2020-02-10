@@ -1,5 +1,6 @@
 package com.flighttime.controller;
 
+import com.flighttime.app.Utils;
 import com.flighttime.model.Airport;
 import com.flighttime.model.Flight;
 import com.flighttime.repository.AirportRepository;
@@ -81,7 +82,7 @@ public class FlightController {
 
     public List<Airport> getAirportWildcard(String wildcard) {
         List<Airport> aps = new ArrayList<>();
-        aps.addAll(findAirportWildcard(getAirports(), wildcard));
+        aps.addAll(findAirportWildcard(getAirports(), Utils.normalize(wildcard)));
         aps.removeAll(Collections.singleton(null));
         logger.info("airports: " + aps);
         return aps;
