@@ -24,7 +24,7 @@ class Api extends Component {
       return;
     }
 
-    const url = "http://localhost:8082/";
+    const url = "/api";
 
     const instance = axios.create({
       baseURL: url,

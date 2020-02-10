@@ -31,7 +31,7 @@ public class FlightController {
         return airports;
     }
 
-    @RequestMapping("/flight")
+    @RequestMapping("/api/flight")
     public Flight flight(@RequestParam(value = "dep", defaultValue = "") String dep,
                          @RequestParam(value = "arr", defaultValue = "") String arr) {
 
@@ -43,7 +43,7 @@ public class FlightController {
         return flight;
     }
 
-    @RequestMapping("/duration")
+    @RequestMapping("/api/duration")
     public double dist(@RequestParam(value = "dep", defaultValue = "") String dep,
                        @RequestParam(value = "arr", defaultValue = "") String arr) {
         Airport depAirport = findAirportByCode(getAirports(), dep);
@@ -55,7 +55,7 @@ public class FlightController {
     }
 
 
-    @RequestMapping("/ap")
+    @RequestMapping("/api/ap")
     public List<Airport> getAirport(@RequestParam(value = "code", defaultValue = "") String code,
                                     @RequestParam(value = "icao", defaultValue = "") String icao,
                                     @RequestParam(value = "name", defaultValue = "") String name,
