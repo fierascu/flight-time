@@ -1,6 +1,7 @@
 # Flight Time
 
 Flight Time Calculator
+Spring Boot REST services with a React frontend.
 
 ## Usage
 
