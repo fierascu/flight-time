@@ -1,7 +1,6 @@
 # Flight Time
 
-Flight Time Calculator
-Spring Boot REST services with a React frontend.
+Flight Time Calculator: Spring Boot REST services with a React frontend.
 
 ## Usage
 
@@ -9,6 +8,7 @@ Spring Boot REST services with a React frontend.
 mvn spring-boot:run
 ```
 
-## Utils
-http://localhost:8080/explorer/index.html#theme=Darkly&uri=/flight?dep=MUC&arr=TSR
-http://localhost:8080/flight?dep=MUC&arr=TSR
+## Usefull links:
+
+* http://localhost:8082/explorer/index.html#theme=Darkly&uri=/api/flight?dep=MUC&arr=TSR
+* http://localhost:8082/api/flight?dep=MUC&arr=TSR
