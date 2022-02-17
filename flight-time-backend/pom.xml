@@ -3,9 +3,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.6.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.flight-time</groupId>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>com.javadocmd</groupId>
             <artifactId>simplelatlng</artifactId>
-            <version>RELEASE</version>
+            <version>1.3.1</version>
         </dependency>
         <!-- used for client reading the json -->
         <dependency>
@@ -113,7 +113,7 @@
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>
-            <version>1.8</version>
+            <version>1.9.0</version>
         </dependency>
 
     </dependencies>
